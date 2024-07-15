@@ -2,9 +2,10 @@ require "rails_helper"
 
 RSpec.describe "Songs endpoints" do
   it "can send a list of songs" do
-    Song.create!(title: 'Raspberry Beret', length: 345, play_count: 34)
-    Song.create!(title: 'Purple Rain', length: 524, play_count: 19)
-    Song.create!(title: 'Legend Has It', length: 2301, play_count: 2300000)
+    prince = Artist.create!(name: "Prince")
+    prince.songs.create!(title: 'Raspberry Beret', length: 345, play_count: 34)
+    prince.songs.create!(title: 'Purple Rain', length: 524, play_count: 19)
+    prince.songs.create!(title: 'Kiss', length: 2301, play_count: 2300000)
 
     get "/songs"
 
@@ -30,7 +31,8 @@ RSpec.describe "Songs endpoints" do
   end
 
   it "can get return about one song" do
-    song_1 = Song.create!(title: 'Raspberry Beret', length: 345, play_count: 34)
+    prince = Artist.create!(name: "Prince")
+    song_1 = prince.songs.create!(title: 'Raspberry Beret', length: 345, play_count: 34)
 
     get "/songs/#{song_1.id}"
 
