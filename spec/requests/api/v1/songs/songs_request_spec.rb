@@ -10,7 +10,7 @@ RSpec.describe "Songs endpoints" do
     @prince.songs.create!(title: 'Purple Rain', length: 524, play_count: 19)
     @prince.songs.create!(title: 'Kiss', length: 2301, play_count: 2300000)
 
-    get "/songs"
+    get "/api/v1/songs"
 
     expect(response).to be_successful
 
@@ -37,7 +37,7 @@ RSpec.describe "Songs endpoints" do
 
     song_1 = @prince.songs.create!(title: 'Raspberry Beret', length: 345, play_count: 34)
 
-    get "/songs/#{song_1.id}"
+    get "/api/v1/songs/#{song_1.id}"
 
     expect(response).to be_successful
 

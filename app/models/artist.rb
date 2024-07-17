@@ -9,6 +9,7 @@ class Artist < ApplicationRecord
 
   def average_song_length
     self.songs.average(:length)
+    self.songs.average(:length)
   end
 
   def song_count
