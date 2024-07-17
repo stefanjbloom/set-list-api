@@ -7,6 +7,14 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  get "/songs", to: "songs#index"
-  get "/songs/:id", to: "songs#show"
+  get "/api/v1/songs", to: "api/v1/songs#index"
+  get "/api/v1/songs/:id", to: "api/v1/songs#show"
+  post "/api/v1/songs", to: "api/v1/songs#create"
+  patch "/api/v1/songs/:id", to: "api/v1/songs#update"
+  delete "/api/v1/songs/:id", to: "api/v1/songs#destroy"
+
+  get "/api/v1/artists/:id/songs", to: "api/v1/artist_songs#index"
+  post "/api/v1/artists/:id/songs", to: "api/v1/artist_songs#create"
+
+  get "/api/v1/artists", to: "api/v1/artists#index"
 end
