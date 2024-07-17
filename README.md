@@ -1,19 +1,34 @@
-# Associations Practice
-
-This branch includes practice exercises for ActiveRecord associations. Work on the exercises in this order:
-
-1. spec/models/artist_spec.rb
-2. spec/models/song_spec.rb
-3. spec/models/record_label_spec.rb
+# Joins Homework
 
 
-Start by running one test at a time. For the first test, you should run bundle exec rspec spec/models/artist_spec.rb:15. Including the line number of the test will help you stay focused on one exercise at a time.
+## 1. Songs - AR review
+Let's write some ActiveRecord queries! 
 
-Avoid running all the tests at once (bundle exec rspec). This will error out since the RecordLabel class hasn't been created yet.
+First, make sure your bundle & database are up to date. 
+```
+bundle install
+rails db:{drop,create,migrate,seed}
+```
 
-Make sure to read the comments in each test. They include instructions on how you should approach the problem. In addition, let any errors guide your implementation. If you get an error, be sure to read the entire error message!
+Then, navigate to `spec/models/song_spec.rb`. Your task is to write AR queries and set them to the `query` variable set up for you in each test. When you run each test, your query should make the test pass. Run each test individually rather than all at once.
 
- 
+## 2. Artists - Joins Exploration
+
+Time for joins! 
+
+So far, the querying we've been doing only uses one table. However, our tables are associated (our songs table has a foreign key to associate every record to an artist) and we might need to do some querying that involves multiple tables! That's where a join comes in. 
+
+Let's look at joins in both AR and SQL! ActiveRecord makes joins syntax easier, but it's important to take a look at the raw SQL that is created in order to understand what AR is doing under the hood. 
+
+In `spec/models/artist_spec.rb` follow the intro instructions to inspect some joins. Then, try one for yourself! 
+
+Creating your own join will likely be difficult, and it's okay if you don't land on a working solution. Bring your questions and blockers to class. 
+
+## Optional Further Reading
+
+1. (SQL Joins)[https://www.w3schools.com/sql/sql_join.asp]
+2. (Join Exercise)[https://pgexercises.com/questions/joins/simplejoin.html]
+
 # Set List Tutorial
 
 
