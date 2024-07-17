@@ -24,6 +24,8 @@ In `spec/models/artist_spec.rb` follow the intro instructions to inspect some jo
 
 Creating your own join will likely be difficult, and it's okay if you don't land on a working solution. Bring your questions and blockers to class. 
 
+Check out the `joins-homework-solutions` branch for answers!
+
 ## Optional Further Reading
 
 1. (SQL Joins)[https://www.w3schools.com/sql/sql_join.asp]
