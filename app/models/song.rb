@@ -1,11 +1,22 @@
 class Song < ApplicationRecord
   belongs_to :artist
 
-  def self.sort_by_recently_created
-    Song.order(created_at: :desc)
+# describe '#artist' do
+#   def artist
+#     Artist.find(self.artist_id)
+#   end
+
+  # describe '#artist_name' do
+  def artist_name
+    self.artist.name
   end
 
-  def last_updated
-    self.updated_at.strftime("%Y-%m-%d")
+  # describe '#other_artist_songs' do
+  def other_artist_songs
+    self.artist.songs.where.not(id: self.id)
+  end
+
+  def self.song_count
+    self.count
   end
 end

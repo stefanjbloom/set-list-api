@@ -10,11 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_15_162423) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_17_152017) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "artists", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "record_label_id", null: false
+    t.index ["record_label_id"], name: "index_artists_on_record_label_id"
+  end
+
+  create_table "record_labels", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -30,5 +38,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_15_162423) do
     t.index ["artist_id"], name: "index_songs_on_artist_id"
   end
 
+  add_foreign_key "artists", "record_labels"
   add_foreign_key "songs", "artists"
 end

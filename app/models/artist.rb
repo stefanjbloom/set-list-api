@@ -1,21 +1,26 @@
 class Artist < ApplicationRecord
   has_many :songs
+  belongs_to :record_label
+
+  # #songs method without associations
+  # def songs
+  #   Song.where(artist_id: self.id)
+  # end
 
   def average_song_length
-    binding.pry
-    songs.average(:length)
+    self.songs.average(:length)
   end
 
-  def self.newest_first
-    Artist.order(created_at: :desc)
+  def song_count
+    self.songs.count
+    # note: self is optional. This solution could also be `songs.count`
   end
 
-  def last_updated
-    self.updated_at.strftime("%Y-%m-%d")
-  end
+  def wrote_song?(song)
+    # Version 1 WITH Assocations
+    self.songs.include?(song)
 
-  def self.by_name
-    binding.pry
-    order(:name)
+    # Version 2 WITHOUT Associations
+    # song.artist_id == self.id
   end
 end

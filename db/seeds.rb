@@ -9,13 +9,15 @@
 #   end
 Song.destroy_all
 Artist.destroy_all
+RecordLabel.destroy_all
 
-prince = Artist.create!(name: 'Prince')
-rtj = Artist.create!(name: 'Run The Jewels')
-caamp = Artist.create!(name: 'Caamp')
-jgb = Artist.create!(name: 'Jerry Garcia Band')
-billie = Artist.create!(name: 'Billie Eilish')
-lcd = Artist.create!(name: 'LCD Soundsystem')
+label = RecordLabel.create!(name: "Atlantic Records")
+prince = label.artists.create!(name: 'Prince')
+rtj = label.artists.create!(name: 'Run The Jewels')
+caamp = label.artists.create!(name: 'Caamp')
+jgb = label.artists.create!(name: 'Jerry Garcia Band')
+billie = label.artists.create!(name: 'Billie Eilish')
+lcd = label.artists.create!(name: 'LCD Soundsystem')
 
 prince.songs.create!(title: 'Raspberry Beret', length: 345, play_count: 34)
 prince.songs.create!(title: 'Purple Rain', length: 524, play_count: 19)

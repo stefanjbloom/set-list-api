@@ -2,10 +2,12 @@ require "rails_helper"
 
 RSpec.describe Artist do
   it {should have_many :songs}
+  it {should belong_to :record_label}
 
   describe "instance methods" do
     before :each do
-      @prince = Artist.create!(name: "Prince")
+      @label = RecordLabel.create!(name: "Atlantic Records")
+      @prince = @label.artists.create!(name: "Prince")
       @purple = Song.create!(title: "Purple Rain", length: 845, play_count: 8599, artist_id: @prince.id)
       @beret = Song.create!(title: "Raspberry Beret", length: 664, play_count: 99, artist_id: @prince.id)
       @other_song = Song.create!(title: "Another Prince Song", length: 1, play_count: 99, artist_id: @prince.id)
@@ -42,7 +44,7 @@ RSpec.describe Artist do
       end
 
       it "returns false if the song is not associated with the artist" do
-        diff_artist = Artist.create!(name: "Different Artist")
+        diff_artist = @label.artists.create!(name: "Different Artist")
         diff_song = diff_artist.songs.create!(title: "Different Song", length: 0, play_count: 0)
         expect(@prince.wrote_song?(diff_song)).to be(false)
       end

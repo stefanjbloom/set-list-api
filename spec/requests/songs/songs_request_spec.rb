@@ -1,11 +1,14 @@
 require "rails_helper"
 
 RSpec.describe "Songs endpoints" do
+  before(:each) do
+    @label = RecordLabel.create!(name: "Atlantic Records")
+    @prince = @label.artists.create!(name: "Prince")
+  end
   it "can send a list of songs" do
-    prince = Artist.create!(name: "Prince")
-    prince.songs.create!(title: 'Raspberry Beret', length: 345, play_count: 34)
-    prince.songs.create!(title: 'Purple Rain', length: 524, play_count: 19)
-    prince.songs.create!(title: 'Kiss', length: 2301, play_count: 2300000)
+    @prince.songs.create!(title: 'Raspberry Beret', length: 345, play_count: 34)
+    @prince.songs.create!(title: 'Purple Rain', length: 524, play_count: 19)
+    @prince.songs.create!(title: 'Kiss', length: 2301, play_count: 2300000)
 
     get "/songs"
 
@@ -31,8 +34,8 @@ RSpec.describe "Songs endpoints" do
   end
 
   it "can get return about one song" do
-    prince = Artist.create!(name: "Prince")
-    song_1 = prince.songs.create!(title: 'Raspberry Beret', length: 345, play_count: 34)
+
+    song_1 = @prince.songs.create!(title: 'Raspberry Beret', length: 345, play_count: 34)
 
     get "/songs/#{song_1.id}"
 
