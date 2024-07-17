@@ -23,26 +23,26 @@ RSpec.describe Song, type: :model do
     end
 
     it "Get the lengths of all songs" do
-      query = #write your query here!
+      query = Song.pluck(:length)
 
       expect(query).to eq([845, 665, 2301, 2301, 940, 240, 340, 240, 500, 640])
     end
 
     it "Get the songs with a play count greater than 0" do
-      query = #write your query here!
+      query = Song.where("play_count > 0")
 
       expect(query.sort).to eq([@purple_rain, @beret, @legend, @talk, @twenty_six, @vagabond, @bury_a_friend, @bad_guy, @someone_great, @change].sort)    
     end
 
     it "Get the titles of the songs with a play count greater than zero, sorted alphabetically" do
-      query = # write your query here!
+      query = Song.where("play_count > 0").order(:title).pluck(:title)
 
       expect(query.sort).to eq(["26", "I Can Change", "Legend Has It", "Purple Rain", "Raspberry Beret", "Someone Great", "Talk to Me", "Vagabond", "bad guy", "bury a friend"])
     end
 
     it "Get the length of the song with the most plays" do
-      query = # write your query here!
-      
+      query = Song.order(play_count: :desc).limit(1).pluck(:length).first
+      # We add .first on the end just to unwrap the song length from an array. We already know there is only 1 song because we used LIMIT
       expect(query).to eq(2301)
     end
   end
