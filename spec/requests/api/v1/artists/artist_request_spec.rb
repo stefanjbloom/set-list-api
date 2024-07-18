@@ -6,7 +6,7 @@ RSpec.describe "Artist Endpoints" do
     artist2 = Artist.create!(name: "Karol G")
     artist3 = Artist.create!(name: "Billie Eilish")
 
-    get "/api/v1/artists"
+    get api_v1_artists_path
 
     expect(response).to be_successful
 

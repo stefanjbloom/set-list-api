@@ -10,7 +10,7 @@ RSpec.describe "Songs endpoints" do
     @prince.songs.create!(title: 'Purple Rain', length: 524, play_count: 19)
     @prince.songs.create!(title: 'Kiss', length: 2301, play_count: 2300000)
 
-    get "/api/v1/songs"
+    get api_v1_songs_path
 
     expect(response).to be_successful
 
@@ -36,7 +36,7 @@ RSpec.describe "Songs endpoints" do
   it "can get return about one song" do
     song_1 = @prince.songs.create!(title: 'Raspberry Beret', length: 345, play_count: 34)
 
-    get "/api/v1/songs/#{song_1.id}"
+    get api_v1_song_path(song_1)
 
     expect(response).to be_successful
 
@@ -63,7 +63,7 @@ RSpec.describe "Songs endpoints" do
       artist_id: @prince.id
     })
 
-    post "/api/v1/songs", params: song_params, as: :json
+    post api_v1_songs_path, params: song_params, as: :json
     created_song = Song.last
 
     expect(response).to be_successful
@@ -82,7 +82,7 @@ RSpec.describe "Songs endpoints" do
       length: 323
     }
 
-    patch "/api/v1/songs/#{song_1.id}", params: song_update_params, as: :json
+    patch api_v1_song_path(song_1), params: song_update_params, as: :json
 
     updated_song = Song.find(song_1.id)
 
@@ -97,7 +97,7 @@ RSpec.describe "Songs endpoints" do
   it "can destroy a song" do
     song_1 = @prince.songs.create!(title: 'Raspberry Beret', length: 345, play_count: 34)
 
-    delete "/api/v1/songs/#{song_1.id}"
+    delete api_v1_song_path(song_1)
 
     expect(response).to be_successful
     #  Either of these options below can verify this song no longer exists

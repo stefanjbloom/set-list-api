@@ -12,7 +12,7 @@ RSpec.describe "Songs for an Artist Endpoings" do
   end
 
   it "can return all songs for a given artist" do
-    get "/api/v1/artists/#{@prince.id}/songs"
+    get api_v1_artist_songs_path(@prince)
 
     expect(response).to be_successful
 
@@ -32,7 +32,7 @@ RSpec.describe "Songs for an Artist Endpoings" do
       play_count: 456445
     })
 
-    post "/api/v1/artists/#{@prince.id}/songs", params: song_params, as: :json
+    post api_v1_artist_songs_path(@prince), params: song_params, as: :json
     created_song = Song.last
 
     expect(response).to be_successful
