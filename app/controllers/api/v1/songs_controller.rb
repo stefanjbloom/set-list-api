@@ -8,9 +8,9 @@ class Api::V1::SongsController < ApplicationController
   end
 
   def create
-    song = Song.create(song_params)
-
-    render json: song, status: 201
+      song = Song.new(song_params)
+      song.save
+      render json: song, status: 201
   end
 
   def update
@@ -30,6 +30,6 @@ class Api::V1::SongsController < ApplicationController
   private
 
   def song_params
-    params.permit(:title, :length, :play_count, :artist_id)
+    params.require(:song).permit(:song, :title, :length, :play_count, :artist_id)
   end
 end
