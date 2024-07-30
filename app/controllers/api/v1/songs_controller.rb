@@ -8,9 +8,8 @@ class Api::V1::SongsController < ApplicationController
   end
 
   def create
-      song = Song.new(song_params)
-      song.save
-      render json: song, status: 201
+    song = Song.create!(song_params)
+    render json: song, status: 201
   end
 
   def update
