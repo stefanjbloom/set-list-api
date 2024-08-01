@@ -1,12 +1,13 @@
 class Api::V1::SongsController < ApplicationController
   def index
-    render json: Song.all
+    songs = Song.all
+    render json: SongSerializer.new(songs)
   end
 
   def show
-    render json: Song.find(params[:id])
+    render json: SongSerializer.new(Song.find(params[:id]))
   end
-
+  
   def create
     render json: Song.create(song_params)
   end
