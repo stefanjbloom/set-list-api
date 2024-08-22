@@ -11,7 +11,8 @@ RSpec.describe "Images Endpoint" do
       expect(json[:data][:id]).to be_nil
       expect(json[:data][:type]).to eq("image")
       expect(json[:data][:attributes]).to have_key(:image_url)
-      expect(json[:data][:attributes]).to have_key(:caption)
+      expect(json[:data][:attributes]).to have_key(:photographer)
+      expect(json[:data][:attributes]).to have_key(:photographer_url)
       expect(json[:data][:attributes]).to have_key(:alt_text)
     end
   end
