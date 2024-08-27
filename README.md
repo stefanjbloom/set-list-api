@@ -9,7 +9,7 @@ This repository serves as an in-class project for Turing's Mod 2 BE program. Thr
 * ActiveRecord & SQL
 * Serializers
 * Error Handling
-
+* API Consumption
 ## Setup
 
 Clone (you don't need to fork) this repo to your local. Then, run the following commands in Terminal: 
