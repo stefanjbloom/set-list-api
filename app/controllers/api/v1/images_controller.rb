@@ -5,7 +5,6 @@ class Api::V1::ImagesController < ApplicationController
     conn = Faraday.new(url: "https://api.pexels.com") do |faraday|
       faraday.headers["Authorization"] = Rails.application.credentials.pexels[:key]
     end
-
     response = conn.get("/v1/search", { query: artist })
     # OR response = conn.get("/v1/search?query=#{artist})
 

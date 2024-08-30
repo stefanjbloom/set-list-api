@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Images Endpoint" do
   describe "happy path" do
-    it "can retrieve an image for a specific artist specific artist" do
+    it "can retrieve an image for a specific artist specific artist", :vcr do
       get "/api/v1/images?artist=The%20Beatles"
 
       expect(response).to be_successful
